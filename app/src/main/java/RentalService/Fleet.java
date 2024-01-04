@@ -6,15 +6,19 @@ import java.util.Random;
 import java.util.random.*;
 
 public class Fleet {
-  private List<Car> car;
+  private List<Car> cars;
   private List<String> car_models;
 
   public Fleet() {
-    this.car = new ArrayList<>();
+    this.cars = new ArrayList<>();
   }
 
   public void addCar(Car car) {
-    this.car.add(car);
+    if (car != null) {
+      this.cars.add(car);
+    } else {
+      // ...
+    }
   } 
 
   private void constructRandomFleet() {
@@ -25,9 +29,18 @@ public class Fleet {
   }
 
   public void printFleet() {
-    for (Car car : this.car) {
+    for (Car car : this.cars) {
       System.out.printf("Car is %s with color %s and regno %s \n",car.getModel(), car.getColor(), car.getregNo());
     }
+  }
+
+  public Boolean carExist(String regNo) {
+    for (Car car : this.cars) {
+      if (car.getregNo() == regNo) {
+        return true;
+      } 
+    } 
+    return false;
   }
 
 }
